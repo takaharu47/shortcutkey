@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+<!-- saved from url=(0054)file:///C:/Users/khira/Downloads/shortcut_keys_v3.html -->
+<html lang="ja"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keyboard Shortcuts Reference</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', 'Meiryo', sans-serif;
+            background: #1a1a2e;
+            color: #eee;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+            color: #00d4ff;
+        }
+        
+        /* カテゴリタブ（上段） */
+        .category-nav {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+            justify-content: center;
+        }
+        .category-btn {
+            padding: 10px 25px;
+            border: none;
+            background: #2d2d44;
+            color: #aaa;
+            cursor: pointer;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        .category-btn:hover {
+            background: #3d3d5c;
+            color: #fff;
+        }
+        .category-btn.active {
+            background: #00d4ff;
+            color: #1a1a2e;
+        }
+        
+        /* アプリタブ（下段） */
+        .app-nav {
+            display: none;
+            gap: 5px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .app-nav.active {
+            display: flex;
+        }
+        .app-btn {
+            padding: 8px 16px;
+            border: none;
+            background: #252540;
+            color: #888;
+            cursor: pointer;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+        .app-btn:hover {
+            background: #353560;
+            color: #fff;
+        }
+        .app-btn.active {
+            background: #353560;
+            color: #fff;
+        }
+        /* アプリ別カラー */
+        .app-btn.windows.active { border-bottom-color: #0078d4; }
+        .app-btn.explorer.active { border-bottom-color: #f0c419; }
+        .app-btn.excel.active { border-bottom-color: #217346; }
+        .app-btn.ppt.active { border-bottom-color: #d24726; }
+        .app-btn.word.active { border-bottom-color: #2b579a; }
+        .app-btn.chrome.active { border-bottom-color: #4285f4; }
+        .app-btn.drive.active { border-bottom-color: #0f9d58; }
+        .app-btn.chat.active { border-bottom-color: #00ac47; }
+        .app-btn.gmail.active { border-bottom-color: #ea4335; }
+        .app-btn.meet.active { border-bottom-color: #00897b; }
+        .app-btn.slides.active { border-bottom-color: #f4b400; }
+        .app-btn.docs.active { border-bottom-color: #4285f4; }
+        .app-btn.calendar.active { border-bottom-color: #4285f4; }
+        .app-btn.zoom.active { border-bottom-color: #2d8cff; }
+        .app-btn.chatgpt.active { border-bottom-color: #10a37f; }
+        .app-btn.claude.active { border-bottom-color: #cc785c; }
+        .app-btn.gamma.active { border-bottom-color: #8b5cf6; }
+        
+        /* タブコンテンツ */
+        .tab-content {
+            display: none;
+            background: #16213e;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        
+        /* 検索ボックス */
+        .search-box {
+            margin-bottom: 15px;
+        }
+        .search-box input {
+            width: 100%;
+            max-width: 400px;
+            padding: 10px 15px;
+            border: 2px solid #3d3d5c;
+            border-radius: 25px;
+            background: #1a1a2e;
+            color: #fff;
+            font-size: 1rem;
+        }
+        .search-box input:focus {
+            outline: none;
+            border-color: #00d4ff;
+        }
+        
+        /* カテゴリ */
+        .category {
+            margin-bottom: 20px;
+        }
+        .category-title {
+            font-size: 1rem;
+            color: #00d4ff;
+            margin-bottom: 8px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #3d3d5c;
+        }
+        
+        /* ショートカットテーブル */
+        .shortcut-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .shortcut-table tr {
+            border-bottom: 1px solid #2d2d44;
+        }
+        .shortcut-table tr:hover {
+            background: #1f2f4a;
+        }
+        .shortcut-table tr.hidden {
+            display: none;
+        }
+        .shortcut-table td {
+            padding: 6px 10px;
+            vertical-align: middle;
+        }
+        .shortcut-table td:first-child {
+            width: 45%;
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+        .shortcut-table td:last-child {
+            width: 55%;
+        }
+        
+        /* キー表示 */
+        .key {
+            display: inline-block;
+            background: linear-gradient(180deg, #4a4a6a 0%, #3a3a5a 100%);
+            border: 1px solid #5a5a7a;
+            border-radius: 4px;
+            padding: 3px 8px;
+            margin: 1px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.85rem;
+            color: #fff;
+            box-shadow: 0 2px 0 #2a2a4a;
+            min-width: 28px;
+            text-align: center;
+        }
+        .key-plus {
+            color: #666;
+            margin: 0 2px;
+            font-size: 0.8rem;
+        }
+        
+        /* アプリヘッダー */
+        .app-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        .app-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1rem;
+            color: #fff;
+        }
+        .app-icon.windows { background: #0078d4; }
+        .app-icon.explorer { background: #f0c419; color: #333; }
+        .app-icon.excel { background: #217346; }
+        .app-icon.ppt { background: #d24726; }
+        .app-icon.word { background: #2b579a; }
+        .app-icon.chrome { background: #4285f4; }
+        .app-icon.drive { background: #0f9d58; }
+        .app-icon.chat { background: #00ac47; }
+        .app-icon.gmail { background: #ea4335; }
+        .app-icon.meet { background: #00897b; }
+        .app-icon.slides { background: #f4b400; color: #333; }
+        .app-icon.docs { background: #4285f4; }
+        .app-icon.calendar { background: #4285f4; }
+        .app-icon.zoom { background: #2d8cff; }
+        .app-icon.chatgpt { background: #10a37f; }
+        .app-icon.claude { background: #cc785c; }
+        .app-icon.gamma { background: #8b5cf6; }
+        .app-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        
+        /* 2カラムレイアウト（大画面時） */
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        @media (max-width: 900px) {
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* レスポンシブ */
+        @media (max-width: 600px) {
+            .category-btn {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+            .app-btn {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+            .shortcut-table td {
+                padding: 5px 6px;
+                font-size: 0.85rem;
+            }
+            .key {
+                padding: 2px 5px;
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>⌨️ Keyboard Shortcuts Quick Reference</h1>
+        
+        <!-- カテゴリナビゲーション -->
+        <div class="category-nav">
+            <button class="category-btn active" onclick="openCategory(&#39;microsoft&#39;)">Microsoft</button>
+            <button class="category-btn" onclick="openCategory(&#39;google&#39;)">Google</button>
+            <button class="category-btn" onclick="openCategory(&#39;others&#39;)">Others</button>
+        </div>
+        
+        <!-- Microsoft アプリナビ -->
+        <div id="nav-microsoft" class="app-nav active">
+            <button class="app-btn windows active" onclick="openApp(&#39;windows&#39;)">Windows</button>
+            <button class="app-btn explorer" onclick="openApp(&#39;explorer&#39;)">Explorer</button>
+            <button class="app-btn excel" onclick="openApp(&#39;excel&#39;)">Excel</button>
+            <button class="app-btn ppt" onclick="openApp(&#39;ppt&#39;)">PowerPoint</button>
+            <button class="app-btn word" onclick="openApp(&#39;word&#39;)">Word</button>
+        </div>
+        
+        <!-- Google アプリナビ -->
+        <div id="nav-google" class="app-nav">
+            <button class="app-btn chrome" onclick="openApp(&#39;chrome&#39;)">Chrome</button>
+            <button class="app-btn drive" onclick="openApp(&#39;drive&#39;)">Drive</button>
+            <button class="app-btn chat" onclick="openApp(&#39;chat&#39;)">Chat</button>
+            <button class="app-btn gmail" onclick="openApp(&#39;gmail&#39;)">Gmail</button>
+            <button class="app-btn meet" onclick="openApp(&#39;meet&#39;)">Meet</button>
+            <button class="app-btn slides" onclick="openApp(&#39;slides&#39;)">Slides</button>
+            <button class="app-btn docs" onclick="openApp(&#39;docs&#39;)">Docs</button>
+            <button class="app-btn calendar" onclick="openApp(&#39;calendar&#39;)">Calendar</button>
+        </div>
+        
+        <!-- Others アプリナビ -->
+        <div id="nav-others" class="app-nav">
+            <button class="app-btn zoom" onclick="openApp(&#39;zoom&#39;)">Zoom</button>
+            <button class="app-btn chatgpt" onclick="openApp(&#39;chatgpt&#39;)">ChatGPT</button>
+            <button class="app-btn claude" onclick="openApp(&#39;claude&#39;)">Claude</button>
+            <button class="app-btn gamma" onclick="openApp(&#39;gamma&#39;)">Gamma</button>
+        </div>
+
+        <!-- ========== MICROSOFT ========== -->
+        
+        <!-- Windows -->
+        <div id="windows" class="tab-content active" data-category="microsoft">
+            <div class="app-header">
+                <div class="app-icon windows">W</div>
+                <span class="app-name">Windows OS</span>
+            </div>
+            <div class="search-box">
+                <input type="text" placeholder="🔍 Search..." onkeyup="filterTable(this, &#39;windows&#39;)">
+            </div>
+            <div class="two-column">
+                <div>
+                    <div class="category">
+                        <h3 class="category-title">🖥️ Desktop</h3>
+                        <table class="shortcut-table">
+                            <tbody><tr><td>デスクトップを表示</td><td><span class="key">Win</span><span class="key-plus">+</span><span class="key">D</span></td></tr>
+                            <tr><td>すべてのウィンドウを最小化</td><td><span class="key">Win</span><span class="key-plus">+</span><span class="key">M</span></td></tr>
+                            <tr><td>最小化を元に戻す</td><td><span class="key">Win</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">M</span></td></tr>
+                            <tr><td>スタートメニュー</td><td><span class="key">Win</span></td></tr>
+                            <tr><td>検索</td><td><span class="key">Win</span><span class="key-plus">+</span><span class="key">S</span></td></tr>
+                            <tr><td>設定を開く</td><td><span class="key">Win</span><span class="key-plus">+</span><span class="key">I</span></td></tr>
+                            <tr><td>アクションセンター</td><td><span class="key">Win</span><span class="key-plus">+</span><span class="key">A</span></td></tr>
+                            <tr><td>画面ロック</td><td><span class="key">Win</span><span class="key-plus">+</span><span class="key">L</span></td></tr>
+                        </tbody></table>
+                    </div>
+                    
+                    <div class="category">
+                        <h3 class="category-title">🪟 Window</h3>
+                        <table class="shortcut-table">
+                            <tbody><tr><td>ウィンドウを左半分に</td><td><span class="key">Win</span><span class="key-plus">+</span><span class="key">←</span></td></tr>
+                            <tr><td>ウィンドウを右半分に</td><td><span class="key">Win</span><span class="key-plus">+</span><span class="key">→</span></td></tr>
+                            <tr><td>ウィンドウを最大化</td><td><span class="key">Win</span><span class="key-plus">+</span><span class="key">↑</span></td></tr>
+                            <tr><td>ウィンドウを最小化</td><td><span class="key">Win</span><span class="key-plus">+</span><span class="key">↓</span></td></tr>
+                            <tr><td>ウィンドウを閉じる</td><td><span class="key">Alt</span><span class="key-plus">+</span><span class="key">F4</span></td></tr>
+                            <tr><td>ウィンドウ切替</td><td><span class="key">Alt</span><span class="key-plus">+</span><span class="key">Tab</span></td></tr>
+                            <tr><td>タスクビュー</td><td><span class="key">Win</span><span class="key-plus">+</span><span class="key">Tab</span></td></tr>
+                            <tr><td>スナップレイアウト</td><td><span class="key">Win</span><span class="key-plus">+</span><span class="key">Z</span></td></tr>
+                        </tbody></table>
+                    </div>
+                    
+                    <div class="category">
+                        <h3 class="category-title">🖼️ Virtual Desktop</h3>
+                        <table class="shortcut-table">
+                            <tbody><tr><td>新しいデスクトップ</td><td><span class="key">Win</span><span class="key-plus">+</span><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">D</span></td></tr>
+                            <tr><td>デスクトップを閉じる</td><td><span class="key">Win</span><span class="key-plus">+</span><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">F4</span></td></tr>
+                            <tr><td>左のデスクトップへ</td><td><span class="key">Win</span><span class="key-plus">+</span><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">←</span></td></tr>
+                            <tr><td>右のデスクトップへ</td><td><span class="key">Win</span><span class="key-plus">+</span><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">→</span></td></tr>
+                        </tbody></table>
+                    </div>
+                </div>
+                <div>
+                    <div class="category">
+                        <h3 class="category-title">📸 Screenshot</h3>
+                        <table class="shortcut-table">
+                            <tbody><tr><td>全画面スクリーンショット</td><td><span class="key">PrtSc</span></td></tr>
+                            <tr><td>スクリーンショット（自動保存）</td><td><span class="key">Win</span><span class="key-plus">+</span><span class="key">PrtSc</span></td></tr>
+                            <tr><td>範囲選択スクリーンショット</td><td><span class="key">Win</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">S</span></td></tr>
+                            <tr><td>アクティブウィンドウのみ</td><td><span class="key">Alt</span><span class="key-plus">+</span><span class="key">PrtSc</span></td></tr>
+                            <tr><td>画面録画</td><td><span class="key">Win</span><span class="key-plus">+</span><span class="key">Alt</span><span class="key-plus">+</span><span class="key">R</span></td></tr>
+                        </tbody></table>
+                    </div>
+                    
+                    <div class="category">
+                        <h3 class="category-title">⚙️ System</h3>
+                        <table class="shortcut-table">
+                            <tbody><tr><td>タスクマネージャー</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">Esc</span></td></tr>
+                            <tr><td>ファイル名を指定して実行</td><td><span class="key">Win</span><span class="key-plus">+</span><span class="key">R</span></td></tr>
+                            <tr><td>エクスプローラーを開く</td><td><span class="key">Win</span><span class="key-plus">+</span><span class="key">E</span></td></tr>
+                            <tr><td>クイックリンクメニュー</td><td><span class="key">Win</span><span class="key-plus">+</span><span class="key">X</span></td></tr>
+                            <tr><td>クリップボード履歴</td><td><span class="key">Win</span><span class="key-plus">+</span><span class="key">V</span></td></tr>
+                            <tr><td>絵文字パネル</td><td><span class="key">Win</span><span class="key-plus">+</span><span class="key">.</span></td></tr>
+                            <tr><td>システム情報</td><td><span class="key">Win</span><span class="key-plus">+</span><span class="key">Pause</span></td></tr>
+                        </tbody></table>
+                    </div>
+                    
+                    <div class="category">
+                        <h3 class="category-title">🔌 Other</h3>
+                        <table class="shortcut-table">
+                            <tbody><tr><td>タスクバーのアプリを起動</td><td><span class="key">Win</span><span class="key-plus">+</span><span class="key">1〜9</span></td></tr>
+                            <tr><td>ディスプレイ切替</td><td><span class="key">Win</span><span class="key-plus">+</span><span class="key">P</span></td></tr>
+                            <tr><td>拡大鏡を開く</td><td><span class="key">Win</span><span class="key-plus">+</span><span class="key">+</span></td></tr>
+                            <tr><td>拡大鏡を閉じる</td><td><span class="key">Win</span><span class="key-plus">+</span><span class="key">Esc</span></td></tr>
+                            <tr><td>音声入力</td><td><span class="key">Win</span><span class="key-plus">+</span><span class="key">H</span></td></tr>
+                            <tr><td>Copilot</td><td><span class="key">Win</span><span class="key-plus">+</span><span class="key">C</span></td></tr>
+                        </tbody></table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Explorer -->
+        <div id="explorer" class="tab-content" data-category="microsoft">
+            <div class="app-header">
+                <div class="app-icon explorer">E</div>
+                <span class="app-name">File Explorer</span>
+            </div>
+            <div class="search-box">
+                <input type="text" placeholder="🔍 Search..." onkeyup="filterTable(this, &#39;explorer&#39;)">
+            </div>
+            
+            <div class="category">
+                <h3 class="category-title">📁 Navigation</h3>
+                <table class="shortcut-table">
+                    <tbody><tr><td>エクスプローラーを開く</td><td><span class="key">Win</span><span class="key-plus">+</span><span class="key">E</span></td></tr>
+                    <tr><td>アドレスバーへ移動</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">L</span> / <span class="key">Alt</span><span class="key-plus">+</span><span class="key">D</span></td></tr>
+                    <tr><td>検索ボックスへ</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">E</span> / <span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">F</span></td></tr>
+                    <tr><td>戻る</td><td><span class="key">Alt</span><span class="key-plus">+</span><span class="key">←</span></td></tr>
+                    <tr><td>進む</td><td><span class="key">Alt</span><span class="key-plus">+</span><span class="key">→</span></td></tr>
+                    <tr><td>親フォルダへ</td><td><span class="key">Alt</span><span class="key-plus">+</span><span class="key">↑</span></td></tr>
+                    <tr><td>新しいウィンドウで開く</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">N</span></td></tr>
+                    <tr><td>新しいタブで開く</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">T</span></td></tr>
+                    <tr><td>タブを閉じる</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">W</span></td></tr>
+                </tbody></table>
+            </div>
+            
+            <div class="category">
+                <h3 class="category-title">📄 File Operations</h3>
+                <table class="shortcut-table">
+                    <tbody><tr><td>新しいフォルダ</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">N</span></td></tr>
+                    <tr><td>名前の変更</td><td><span class="key">F2</span></td></tr>
+                    <tr><td>削除</td><td><span class="key">Delete</span></td></tr>
+                    <tr><td>完全に削除（ゴミ箱を経由しない）</td><td><span class="key">Shift</span><span class="key-plus">+</span><span class="key">Delete</span></td></tr>
+                    <tr><td>コピー</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">C</span></td></tr>
+                    <tr><td>切り取り</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">X</span></td></tr>
+                    <tr><td>貼り付け</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">V</span></td></tr>
+                    <tr><td>パスをコピー</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">C</span></td></tr>
+                    <tr><td>ショートカット作成</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span>ドラッグ</td></tr>
+                </tbody></table>
+            </div>
+            
+            <div class="category">
+                <h3 class="category-title">✅ Selection</h3>
+                <table class="shortcut-table">
+                    <tbody><tr><td>すべて選択</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">A</span></td></tr>
+                    <tr><td>選択を反転</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">I</span></td></tr>
+                    <tr><td>複数選択（連続）</td><td><span class="key">Shift</span><span class="key-plus">+</span>クリック</td></tr>
+                    <tr><td>複数選択（個別）</td><td><span class="key">Ctrl</span><span class="key-plus">+</span>クリック</td></tr>
+                </tbody></table>
+            </div>
+            
+            <div class="category">
+                <h3 class="category-title">🔧 View / Other</h3>
+                <table class="shortcut-table">
+                    <tbody><tr><td>プレビューパネル</td><td><span class="key">Alt</span><span class="key-plus">+</span><span class="key">P</span></td></tr>
+                    <tr><td>詳細パネル</td><td><span class="key">Alt</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">P</span></td></tr>
+                    <tr><td>ナビゲーションウィンドウ</td><td><span class="key">Alt</span><span class="key-plus">+</span><span class="key">F1</span></td></tr>
+                    <tr><td>表示を更新</td><td><span class="key">F5</span></td></tr>
+                    <tr><td>プロパティ</td><td><span class="key">Alt</span><span class="key-plus">+</span><span class="key">Enter</span></td></tr>
+                    <tr><td>隠しファイルの表示切替</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">H</span></td></tr>
+                    <tr><td>ファイル拡張子の表示切替</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">H</span></td></tr>
+                </tbody></table>
+            </div>
+        </div>
+        
+        <!-- Excel -->
+        <div id="excel" class="tab-content" data-category="microsoft">
+            <div class="app-header">
+                <div class="app-icon excel">X</div>
+                <span class="app-name">Microsoft Excel</span>
+            </div>
+            <div class="search-box">
+                <input type="text" placeholder="🔍 Search..." onkeyup="filterTable(this, &#39;excel&#39;)">
+            </div>
+            <div class="two-column">
+                <div>
+                    <div class="category">
+                        <h3 class="category-title">📁 File</h3>
+                        <table class="shortcut-table">
+                            <tbody><tr><td>新規ブック</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">N</span></td></tr>
+                            <tr><td>ブックを開く</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">O</span></td></tr>
+                            <tr><td>上書き保存</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">S</span></td></tr>
+                            <tr><td>名前を付けて保存</td><td><span class="key">F12</span></td></tr>
+                            <tr><td>印刷</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">P</span></td></tr>
+                            <tr><td>ブックを閉じる</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">W</span></td></tr>
+                        </tbody></table>
+                    </div>
+                    
+                    <div class="category">
+                        <h3 class="category-title">✂️ Edit</h3>
+                        <table class="shortcut-table">
+                            <tbody><tr><td>元に戻す</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Z</span></td></tr>
+                            <tr><td>やり直し</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Y</span></td></tr>
+                            <tr><td>切り取り</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">X</span></td></tr>
+                            <tr><td>コピー</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">C</span></td></tr>
+                            <tr><td>貼り付け</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">V</span></td></tr>
+                            <tr><td>形式を選択して貼り付け</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Alt</span><span class="key-plus">+</span><span class="key">V</span></td></tr>
+                            <tr><td>すべて選択</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">A</span></td></tr>
+                            <tr><td>検索</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">F</span></td></tr>
+                            <tr><td>置換</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">H</span></td></tr>
+                            <tr><td>ジャンプ</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">G</span></td></tr>
+                        </tbody></table>
+                    </div>
+                    
+                    <div class="category">
+                        <h3 class="category-title">📊 Selection</h3>
+                        <table class="shortcut-table">
+                            <tbody><tr><td>データ端まで移動</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">矢印</span></td></tr>
+                            <tr><td>データ端まで選択</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">矢印</span></td></tr>
+                            <tr><td>行全体を選択</td><td><span class="key">Shift</span><span class="key-plus">+</span><span class="key">Space</span></td></tr>
+                            <tr><td>列全体を選択</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Space</span></td></tr>
+                            <tr><td>A1へ移動</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Home</span></td></tr>
+                            <tr><td>最終セルへ移動</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">End</span></td></tr>
+                            <tr><td>可視セルのみ選択</td><td><span class="key">Alt</span><span class="key-plus">+</span><span class="key">;</span></td></tr>
+                            <tr><td>現在の領域を選択</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">*</span></td></tr>
+                        </tbody></table>
+                    </div>
+                    
+                    <div class="category">
+                        <h3 class="category-title">➕ Row/Column</h3>
+                        <table class="shortcut-table">
+                            <tbody><tr><td>行/列/セルの挿入</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">+</span></td></tr>
+                            <tr><td>行/列/セルの削除</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">-</span></td></tr>
+                            <tr><td>セル編集モード</td><td><span class="key">F2</span></td></tr>
+                            <tr><td>行を非表示</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">9</span></td></tr>
+                            <tr><td>行を再表示</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">9</span></td></tr>
+                            <tr><td>列を非表示</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">0</span></td></tr>
+                            <tr><td>列を再表示</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">0</span></td></tr>
+                            <tr><td>グループ化</td><td><span class="key">Alt</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">→</span></td></tr>
+                            <tr><td>グループ解除</td><td><span class="key">Alt</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">←</span></td></tr>
+                        </tbody></table>
+                    </div>
+                </div>
+                <div>
+                    <div class="category">
+                        <h3 class="category-title">🎨 Format</h3>
+                        <table class="shortcut-table">
+                            <tbody><tr><td>セルの書式設定</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">1</span></td></tr>
+                            <tr><td>太字</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">B</span></td></tr>
+                            <tr><td>斜体</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">I</span></td></tr>
+                            <tr><td>下線</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">U</span></td></tr>
+                            <tr><td>取り消し線</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">5</span></td></tr>
+                            <tr><td>外枠罫線</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">&amp;</span></td></tr>
+                            <tr><td>罫線削除</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">_</span></td></tr>
+                            <tr><td>桁区切り</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">!</span></td></tr>
+                            <tr><td>通貨形式</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">$</span></td></tr>
+                            <tr><td>パーセント</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">%</span></td></tr>
+                            <tr><td>日付形式</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">#</span></td></tr>
+                        </tbody></table>
+                    </div>
+                    
+                    <div class="category">
+                        <h3 class="category-title">🔢 Formula</h3>
+                        <table class="shortcut-table">
+                            <tbody><tr><td>オートSUM</td><td><span class="key">Alt</span><span class="key-plus">+</span><span class="key">=</span></td></tr>
+                            <tr><td>関数の挿入</td><td><span class="key">Shift</span><span class="key-plus">+</span><span class="key">F3</span></td></tr>
+                            <tr><td>絶対/相対参照切替</td><td><span class="key">F4</span></td></tr>
+                            <tr><td>数式の表示/非表示</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">`</span></td></tr>
+                            <tr><td>上のセルをコピー</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">D</span></td></tr>
+                            <tr><td>左のセルをコピー</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">R</span></td></tr>
+                            <tr><td>今日の日付</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">;</span></td></tr>
+                            <tr><td>現在時刻</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">:</span></td></tr>
+                            <tr><td>配列数式入力</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">Enter</span></td></tr>
+                        </tbody></table>
+                    </div>
+                    
+                    <div class="category">
+                        <h3 class="category-title">📑 Sheet</h3>
+                        <table class="shortcut-table">
+                            <tbody><tr><td>次のシート</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">PageDown</span></td></tr>
+                            <tr><td>前のシート</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">PageUp</span></td></tr>
+                            <tr><td>新しいシート</td><td><span class="key">Shift</span><span class="key-plus">+</span><span class="key">F11</span></td></tr>
+                        </tbody></table>
+                    </div>
+                    
+                    <div class="category">
+                        <h3 class="category-title">📈 Data</h3>
+                        <table class="shortcut-table">
+                            <tbody><tr><td>フィルター設定/解除</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">L</span></td></tr>
+                            <tr><td>テーブル作成</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">T</span></td></tr>
+                            <tr><td>グラフ作成</td><td><span class="key">Alt</span><span class="key-plus">+</span><span class="key">F1</span></td></tr>
+                            <tr><td>ハイパーリンク</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">K</span></td></tr>
+                            <tr><td>コメント挿入</td><td><span class="key">Shift</span><span class="key-plus">+</span><span class="key">F2</span></td></tr>
+                        </tbody></table>
+                    </div>
+                    
+                    <div class="category">
+                        <h3 class="category-title">⚡ Other</h3>
+                        <table class="shortcut-table">
+                            <tbody><tr><td>リボン表示/非表示</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">F1</span></td></tr>
+                            <tr><td>VBAエディタ</td><td><span class="key">Alt</span><span class="key-plus">+</span><span class="key">F11</span></td></tr>
+                            <tr><td>セル内改行</td><td><span class="key">Alt</span><span class="key-plus">+</span><span class="key">Enter</span></td></tr>
+                            <tr><td>フラッシュフィル</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">E</span></td></tr>
+                            <tr><td>クイック分析</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Q</span></td></tr>
+                            <tr><td>選択範囲に一括入力</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Enter</span></td></tr>
+                        </tbody></table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- PowerPoint -->
+        <div id="ppt" class="tab-content" data-category="microsoft">
+            <div class="app-header">
+                <div class="app-icon ppt">P</div>
+                <span class="app-name">Microsoft PowerPoint</span>
+            </div>
+            <div class="search-box">
+                <input type="text" placeholder="🔍 Search..." onkeyup="filterTable(this, &#39;ppt&#39;)">
+            </div>
+            
+            <div class="category">
+                <h3 class="category-title">📁 File / Edit</h3>
+                <table class="shortcut-table">
+                    <tbody><tr><td>新しいスライド</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">M</span></td></tr>
+                    <tr><td>スライドを複製</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">D</span></td></tr>
+                    <tr><td>上書き保存</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">S</span></td></tr>
+                    <tr><td>名前を付けて保存</td><td><span class="key">F12</span></td></tr>
+                    <tr><td>元に戻す</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Z</span></td></tr>
+                    <tr><td>やり直し</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Y</span></td></tr>
+                    <tr><td>すべて選択</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">A</span></td></tr>
+                </tbody></table>
+            </div>
+            
+            <div class="category">
+                <h3 class="category-title">🎨 Format</h3>
+                <table class="shortcut-table">
+                    <tbody><tr><td>太字</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">B</span></td></tr>
+                    <tr><td>斜体</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">I</span></td></tr>
+                    <tr><td>下線</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">U</span></td></tr>
+                    <tr><td>フォントサイズ拡大</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">&gt;</span></td></tr>
+                    <tr><td>フォントサイズ縮小</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">&lt;</span></td></tr>
+                    <tr><td>左揃え</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">L</span></td></tr>
+                    <tr><td>中央揃え</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">E</span></td></tr>
+                    <tr><td>右揃え</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">R</span></td></tr>
+                </tbody></table>
+            </div>
+            
+            <div class="category">
+                <h3 class="category-title">🔧 Object</h3>
+                <table class="shortcut-table">
+                    <tbody><tr><td>グループ化</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">G</span></td></tr>
+                    <tr><td>グループ解除</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">G</span></td></tr>
+                    <tr><td>最前面へ移動</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">]</span></td></tr>
+                    <tr><td>最背面へ移動</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">[</span></td></tr>
+                    <tr><td>ハイパーリンク</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">K</span></td></tr>
+                </tbody></table>
+            </div>
+            
+            <div class="category">
+                <h3 class="category-title">▶️ Slideshow</h3>
+                <table class="shortcut-table">
+                    <tbody><tr><td>最初からスライドショー</td><td><span class="key">F5</span></td></tr>
+                    <tr><td>現在のスライドから開始</td><td><span class="key">Shift</span><span class="key-plus">+</span><span class="key">F5</span></td></tr>
+                    <tr><td>スライドショー終了</td><td><span class="key">Esc</span></td></tr>
+                    <tr><td>次のスライド</td><td><span class="key">→</span> / <span class="key">Space</span></td></tr>
+                    <tr><td>前のスライド</td><td><span class="key">←</span></td></tr>
+                    <tr><td>特定のスライドへ</td><td><span class="key">番号</span><span class="key-plus">+</span><span class="key">Enter</span></td></tr>
+                    <tr><td>画面を黒くする</td><td><span class="key">B</span></td></tr>
+                    <tr><td>画面を白くする</td><td><span class="key">W</span></td></tr>
+                    <tr><td>レーザーポインター</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">L</span></td></tr>
+                </tbody></table>
+            </div>
+        </div>
+        
+        <!-- Word -->
+        <div id="word" class="tab-content" data-category="microsoft">
+            <div class="app-header">
+                <div class="app-icon word">W</div>
+                <span class="app-name">Microsoft Word</span>
+            </div>
+            <div class="search-box">
+                <input type="text" placeholder="🔍 Search..." onkeyup="filterTable(this, &#39;word&#39;)">
+            </div>
+            
+            <div class="category">
+                <h3 class="category-title">📁 File / Edit</h3>
+                <table class="shortcut-table">
+                    <tbody><tr><td>新規文書</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">N</span></td></tr>
+                    <tr><td>開く</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">O</span></td></tr>
+                    <tr><td>上書き保存</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">S</span></td></tr>
+                    <tr><td>名前を付けて保存</td><td><span class="key">F12</span></td></tr>
+                    <tr><td>印刷</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">P</span></td></tr>
+                    <tr><td>元に戻す</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Z</span></td></tr>
+                    <tr><td>やり直し</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Y</span></td></tr>
+                    <tr><td>検索</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">F</span></td></tr>
+                    <tr><td>置換</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">H</span></td></tr>
+                    <tr><td>ジャンプ</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">G</span></td></tr>
+                </tbody></table>
+            </div>
+            
+            <div class="category">
+                <h3 class="category-title">🎨 Format</h3>
+                <table class="shortcut-table">
+                    <tbody><tr><td>太字</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">B</span></td></tr>
+                    <tr><td>斜体</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">I</span></td></tr>
+                    <tr><td>下線</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">U</span></td></tr>
+                    <tr><td>取り消し線</td><td><span class="key">Alt</span><span class="key-plus">+</span><span class="key">H</span><span class="key-plus">→</span><span class="key">4</span></td></tr>
+                    <tr><td>フォントサイズ拡大</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">&gt;</span></td></tr>
+                    <tr><td>フォントサイズ縮小</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">&lt;</span></td></tr>
+                    <tr><td>書式のコピー</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">C</span></td></tr>
+                    <tr><td>書式の貼り付け</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">V</span></td></tr>
+                </tbody></table>
+            </div>
+            
+            <div class="category">
+                <h3 class="category-title">📐 Paragraph</h3>
+                <table class="shortcut-table">
+                    <tbody><tr><td>左揃え</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">L</span></td></tr>
+                    <tr><td>中央揃え</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">E</span></td></tr>
+                    <tr><td>右揃え</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">R</span></td></tr>
+                    <tr><td>両端揃え</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">J</span></td></tr>
+                    <tr><td>インデント増加</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">M</span></td></tr>
+                    <tr><td>インデント減少</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">M</span></td></tr>
+                    <tr><td>行間1行</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">1</span></td></tr>
+                    <tr><td>行間2行</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">2</span></td></tr>
+                </tbody></table>
+            </div>
+            
+            <div class="category">
+                <h3 class="category-title">📑 Insert / Other</h3>
+                <table class="shortcut-table">
+                    <tbody><tr><td>ハイパーリンク</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">K</span></td></tr>
+                    <tr><td>改ページ</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Enter</span></td></tr>
+                    <tr><td>コメント挿入</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Alt</span><span class="key-plus">+</span><span class="key">M</span></td></tr>
+                    <tr><td>見出し1</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Alt</span><span class="key-plus">+</span><span class="key">1</span></td></tr>
+                    <tr><td>見出し2</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Alt</span><span class="key-plus">+</span><span class="key">2</span></td></tr>
+                    <tr><td>ナビゲーションウィンドウ</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">F</span></td></tr>
+                    <tr><td>文字数カウント</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">G</span></td></tr>
+                </tbody></table>
+            </div>
+        </div>
+
+        <!-- ========== GOOGLE ========== -->
+        
+        <!-- Chrome -->
+        <div id="chrome" class="tab-content" data-category="google">
+            <div class="app-header">
+                <div class="app-icon chrome">C</div>
+                <span class="app-name">Google Chrome</span>
+            </div>
+            <div class="search-box">
+                <input type="text" placeholder="🔍 Search..." onkeyup="filterTable(this, &#39;chrome&#39;)">
+            </div>
+            
+            <div class="category">
+                <h3 class="category-title">🗂️ Tab / Window</h3>
+                <table class="shortcut-table">
+                    <tbody><tr><td>新しいタブ</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">T</span></td></tr>
+                    <tr><td>タブを閉じる</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">W</span></td></tr>
+                    <tr><td>閉じたタブを復元</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">T</span></td></tr>
+                    <tr><td>次のタブ</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Tab</span></td></tr>
+                    <tr><td>前のタブ</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">Tab</span></td></tr>
+                    <tr><td>特定のタブへ</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">1〜8</span></td></tr>
+                    <tr><td>最後のタブ</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">9</span></td></tr>
+                    <tr><td>新しいウィンドウ</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">N</span></td></tr>
+                    <tr><td>シークレットウィンドウ</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">N</span></td></tr>
+                </tbody></table>
+            </div>
+            
+            <div class="category">
+                <h3 class="category-title">🔍 Navigation</h3>
+                <table class="shortcut-table">
+                    <tbody><tr><td>アドレスバーへ</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">L</span></td></tr>
+                    <tr><td>ページ内検索</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">F</span></td></tr>
+                    <tr><td>戻る</td><td><span class="key">Alt</span><span class="key-plus">+</span><span class="key">←</span></td></tr>
+                    <tr><td>進む</td><td><span class="key">Alt</span><span class="key-plus">+</span><span class="key">→</span></td></tr>
+                    <tr><td>再読み込み</td><td><span class="key">F5</span></td></tr>
+                    <tr><td>強制再読み込み</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">R</span></td></tr>
+                    <tr><td>ブックマーク追加</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">D</span></td></tr>
+                    <tr><td>履歴</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">H</span></td></tr>
+                    <tr><td>ダウンロード</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">J</span></td></tr>
+                    <tr><td>デベロッパーツール</td><td><span class="key">F12</span></td></tr>
+                </tbody></table>
+            </div>
+            
+            <div class="category">
+                <h3 class="category-title">📄 Page</h3>
+                <table class="shortcut-table">
+                    <tbody><tr><td>ズームイン</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">+</span></td></tr>
+                    <tr><td>ズームアウト</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">-</span></td></tr>
+                    <tr><td>ズームリセット</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">0</span></td></tr>
+                    <tr><td>印刷</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">P</span></td></tr>
+                    <tr><td>ページ先頭</td><td><span class="key">Home</span></td></tr>
+                    <tr><td>ページ末尾</td><td><span class="key">End</span></td></tr>
+                </tbody></table>
+            </div>
+        </div>
+        
+        <!-- Google Drive -->
+        <div id="drive" class="tab-content" data-category="google">
+            <div class="app-header">
+                <div class="app-icon drive">D</div>
+                <span class="app-name">Google Drive</span>
+            </div>
+            <div class="search-box">
+                <input type="text" placeholder="🔍 Search..." onkeyup="filterTable(this, &#39;drive&#39;)">
+            </div>
+            
+            <div class="category">
+                <h3 class="category-title">📁 Navigation / Selection</h3>
+                <table class="shortcut-table">
+                    <tbody><tr><td>検索</td><td><span class="key">/</span></td></tr>
+                    <tr><td>マイドライブへ</td><td><span class="key">G</span><span class="key-plus">→</span><span class="key">H</span></td></tr>
+                    <tr><td>すべて選択</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">A</span></td></tr>
+                    <tr><td>選択解除</td><td><span class="key">Esc</span></td></tr>
+                    <tr><td>上/下移動</td><td><span class="key">↑</span> / <span class="key">↓</span></td></tr>
+                    <tr><td>複数選択</td><td><span class="key">Shift</span><span class="key-plus">+</span><span class="key">↑↓</span></td></tr>
+                    <tr><td>開く</td><td><span class="key">Enter</span></td></tr>
+                </tbody></table>
+            </div>
+            
+            <div class="category">
+                <h3 class="category-title">🔧 Actions</h3>
+                <table class="shortcut-table">
+                    <tbody><tr><td>新規作成メニュー</td><td><span class="key">Shift</span><span class="key-plus">+</span><span class="key">C</span></td></tr>
+                    <tr><td>新規フォルダ</td><td><span class="key">Shift</span><span class="key-plus">+</span><span class="key">F</span></td></tr>
+                    <tr><td>アップロード</td><td><span class="key">Shift</span><span class="key-plus">+</span><span class="key">U</span></td></tr>
+                    <tr><td>名前変更</td><td><span class="key">N</span></td></tr>
+                    <tr><td>ゴミ箱へ</td><td><span class="key">#</span> / <span class="key">Delete</span></td></tr>
+                    <tr><td>スター追加/解除</td><td><span class="key">S</span></td></tr>
+                    <tr><td>移動</td><td><span class="key">Z</span></td></tr>
+                    <tr><td>共有</td><td><span class="key">.</span></td></tr>
+                    <tr><td>詳細パネル</td><td><span class="key">D</span></td></tr>
+                    <tr><td>ショートカット一覧</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">/</span></td></tr>
+                </tbody></table>
+            </div>
+        </div>
+        
+        <!-- Google Chat -->
+        <div id="chat" class="tab-content" data-category="google">
+            <div class="app-header">
+                <div class="app-icon chat">C</div>
+                <span class="app-name">Google Chat</span>
+            </div>
+            <div class="search-box">
+                <input type="text" placeholder="🔍 Search..." onkeyup="filterTable(this, &#39;chat&#39;)">
+            </div>
+            
+            <div class="category">
+                <h3 class="category-title">💬 Message</h3>
+                <table class="shortcut-table">
+                    <tbody><tr><td>検索</td><td><span class="key">/</span></td></tr>
+                    <tr><td>メッセージ送信</td><td><span class="key">Enter</span></td></tr>
+                    <tr><td>改行（送信せず）</td><td><span class="key">Shift</span><span class="key-plus">+</span><span class="key">Enter</span></td></tr>
+                    <tr><td>最後のメッセージを編集</td><td><span class="key">↑</span>（入力欄空時）</td></tr>
+                    <tr><td>絵文字ピッカー</td><td><span class="key">:</span></td></tr>
+                    <tr><td>メンション</td><td><span class="key">@</span></td></tr>
+                </tbody></table>
+            </div>
+            
+            <div class="category">
+                <h3 class="category-title">🔧 Navigation</h3>
+                <table class="shortcut-table">
+                    <tbody><tr><td>次のスペース/チャット</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">]</span></td></tr>
+                    <tr><td>前のスペース/チャット</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">[</span></td></tr>
+                    <tr><td>未読に移動</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">A</span></td></tr>
+                    <tr><td>サイドパネル切替</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">S</span></td></tr>
+                    <tr><td>ショートカット一覧</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">/</span></td></tr>
+                </tbody></table>
+            </div>
+            
+            <div class="category">
+                <h3 class="category-title">🎨 Format</h3>
+                <table class="shortcut-table">
+                    <tbody><tr><td>太字</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">B</span></td></tr>
+                    <tr><td>斜体</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">I</span></td></tr>
+                    <tr><td>取り消し線</td><td><span class="key">Alt</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">5</span></td></tr>
+                    <tr><td>コードブロック</td><td><span class="key">`</span>テキスト<span class="key">`</span></td></tr>
+                </tbody></table>
+            </div>
+        </div>
+        
+        <!-- Gmail -->
+        <div id="gmail" class="tab-content" data-category="google">
+            <div class="app-header">
+                <div class="app-icon gmail">M</div>
+                <span class="app-name">Gmail</span>
+            </div>
+            <div class="search-box">
+                <input type="text" placeholder="🔍 Search..." onkeyup="filterTable(this, &#39;gmail&#39;)">
+            </div>
+            
+            <div class="category">
+                <h3 class="category-title">✉️ Compose</h3>
+                <table class="shortcut-table">
+                    <tbody><tr><td>新規メール作成</td><td><span class="key">C</span></td></tr>
+                    <tr><td>返信</td><td><span class="key">R</span></td></tr>
+                    <tr><td>全員に返信</td><td><span class="key">A</span></td></tr>
+                    <tr><td>転送</td><td><span class="key">F</span></td></tr>
+                    <tr><td>送信</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Enter</span></td></tr>
+                    <tr><td>Cc追加</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">C</span></td></tr>
+                    <tr><td>Bcc追加</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">B</span></td></tr>
+                    <tr><td>リンク挿入</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">K</span></td></tr>
+                </tbody></table>
+            </div>
+            
+            <div class="category">
+                <h3 class="category-title">📥 Actions</h3>
+                <table class="shortcut-table">
+                    <tbody><tr><td>検索</td><td><span class="key">/</span></td></tr>
+                    <tr><td>アーカイブ</td><td><span class="key">E</span></td></tr>
+                    <tr><td>削除</td><td><span class="key">#</span></td></tr>
+                    <tr><td>既読にする</td><td><span class="key">Shift</span><span class="key-plus">+</span><span class="key">I</span></td></tr>
+                    <tr><td>未読にする</td><td><span class="key">Shift</span><span class="key-plus">+</span><span class="key">U</span></td></tr>
+                    <tr><td>スター追加</td><td><span class="key">S</span></td></tr>
+                    <tr><td>ラベル付け</td><td><span class="key">L</span></td></tr>
+                    <tr><td>ミュート</td><td><span class="key">M</span></td></tr>
+                    <tr><td>スヌーズ</td><td><span class="key">B</span></td></tr>
+                </tbody></table>
+            </div>
+            
+            <div class="category">
+                <h3 class="category-title">🔍 Navigation</h3>
+                <table class="shortcut-table">
+                    <tbody><tr><td>受信トレイへ</td><td><span class="key">G</span><span class="key-plus">→</span><span class="key">I</span></td></tr>
+                    <tr><td>送信済みへ</td><td><span class="key">G</span><span class="key-plus">→</span><span class="key">T</span></td></tr>
+                    <tr><td>下書きへ</td><td><span class="key">G</span><span class="key-plus">→</span><span class="key">D</span></td></tr>
+                    <tr><td>次のメール</td><td><span class="key">J</span></td></tr>
+                    <tr><td>前のメール</td><td><span class="key">K</span></td></tr>
+                    <tr><td>メールを開く</td><td><span class="key">O</span> / <span class="key">Enter</span></td></tr>
+                    <tr><td>ショートカット一覧</td><td><span class="key">Shift</span><span class="key-plus">+</span><span class="key">?</span></td></tr>
+                </tbody></table>
+            </div>
+        </div>
+        
+        <!-- Google Meet -->
+        <div id="meet" class="tab-content" data-category="google">
+            <div class="app-header">
+                <div class="app-icon meet">M</div>
+                <span class="app-name">Google Meet</span>
+            </div>
+            <div class="search-box">
+                <input type="text" placeholder="🔍 Search..." onkeyup="filterTable(this, &#39;meet&#39;)">
+            </div>
+            
+            <div class="category">
+                <h3 class="category-title">🎤 Audio / Video</h3>
+                <table class="shortcut-table">
+                    <tbody><tr><td>マイクON/OFF</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">D</span></td></tr>
+                    <tr><td>カメラON/OFF</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">E</span></td></tr>
+                    <tr><td>挙手</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Alt</span><span class="key-plus">+</span><span class="key">H</span></td></tr>
+                    <tr><td>字幕ON/OFF</td><td><span class="key">C</span></td></tr>
+                </tbody></table>
+            </div>
+            
+            <div class="category">
+                <h3 class="category-title">🖥️ Screen / Chat</h3>
+                <table class="shortcut-table">
+                    <tbody><tr><td>画面共有開始/停止</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Alt</span><span class="key-plus">+</span><span class="key">S</span></td></tr>
+                    <tr><td>チャットパネル</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Alt</span><span class="key-plus">+</span><span class="key">C</span></td></tr>
+                    <tr><td>参加者パネル</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Alt</span><span class="key-plus">+</span><span class="key">P</span></td></tr>
+                    <tr><td>通話を終了</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Alt</span><span class="key-plus">+</span><span class="key">E</span></td></tr>
+                </tbody></table>
+            </div>
+            
+            <div class="category">
+                <h3 class="category-title">🔧 Other</h3>
+                <table class="shortcut-table">
+                    <tbody><tr><td>全画面表示</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Alt</span><span class="key-plus">+</span><span class="key">F</span></td></tr>
+                    <tr><td>タイル表示</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Alt</span><span class="key-plus">+</span><span class="key">T</span></td></tr>
+                    <tr><td>スポットライト表示</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Alt</span><span class="key-plus">+</span><span class="key">O</span></td></tr>
+                    <tr><td>ショートカット一覧</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">/</span></td></tr>
+                </tbody></table>
+            </div>
+        </div>
+        
+        <!-- Google Slides -->
+        <div id="slides" class="tab-content" data-category="google">
+            <div class="app-header">
+                <div class="app-icon slides">S</div>
+                <span class="app-name">Google Slides</span>
+            </div>
+            <div class="search-box">
+                <input type="text" placeholder="🔍 Search..." onkeyup="filterTable(this, &#39;slides&#39;)">
+            </div>
+            
+            <div class="category">
+                <h3 class="category-title">📁 File / Edit</h3>
+                <table class="shortcut-table">
+                    <tbody><tr><td>新しいスライド</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">M</span></td></tr>
+                    <tr><td>スライド複製</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">D</span></td></tr>
+                    <tr><td>元に戻す</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Z</span></td></tr>
+                    <tr><td>やり直し</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Y</span></td></tr>
+                    <tr><td>書式なし貼り付け</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">V</span></td></tr>
+                    <tr><td>印刷</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">P</span></td></tr>
+                </tbody></table>
+            </div>
+            
+            <div class="category">
+                <h3 class="category-title">🎨 Format</h3>
+                <table class="shortcut-table">
+                    <tbody><tr><td>太字</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">B</span></td></tr>
+                    <tr><td>斜体</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">I</span></td></tr>
+                    <tr><td>下線</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">U</span></td></tr>
+                    <tr><td>フォント拡大</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">&gt;</span></td></tr>
+                    <tr><td>フォント縮小</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">&lt;</span></td></tr>
+                    <tr><td>中央揃え</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">E</span></td></tr>
+                    <tr><td>書式コピー</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Alt</span><span class="key-plus">+</span><span class="key">C</span></td></tr>
+                    <tr><td>書式貼付</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Alt</span><span class="key-plus">+</span><span class="key">V</span></td></tr>
+                </tbody></table>
+            </div>
+            
+            <div class="category">
+                <h3 class="category-title">▶️ Present</h3>
+                <table class="shortcut-table">
+                    <tbody><tr><td>最初からプレゼン</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">F5</span></td></tr>
+                    <tr><td>現在から開始</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">F5</span></td></tr>
+                    <tr><td>終了</td><td><span class="key">Esc</span></td></tr>
+                    <tr><td>次へ</td><td><span class="key">→</span> / <span class="key">Space</span></td></tr>
+                    <tr><td>前へ</td><td><span class="key">←</span></td></tr>
+                </tbody></table>
+            </div>
+            
+            <div class="category">
+                <h3 class="category-title">🔧 Object</h3>
+                <table class="shortcut-table">
+                    <tbody><tr><td>グループ化</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Alt</span><span class="key-plus">+</span><span class="key">G</span></td></tr>
+                    <tr><td>グループ解除</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Alt</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">G</span></td></tr>
+                    <tr><td>最前面へ</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">↑</span></td></tr>
+                    <tr><td>最背面へ</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">↓</span></td></tr>
+                </tbody></table>
+            </div>
+        </div>
+        
+        <!-- Google Docs -->
+        <div id="docs" class="tab-content" data-category="google">
+            <div class="app-header">
+                <div class="app-icon docs">D</div>
+                <span class="app-name">Google Docs</span>
+            </div>
+            <div class="search-box">
+                <input type="text" placeholder="🔍 Search..." onkeyup="filterTable(this, &#39;docs&#39;)">
+            </div>
+            
+            <div class="category">
+                <h3 class="category-title">📝 Edit</h3>
+                <table class="shortcut-table">
+                    <tbody><tr><td>元に戻す</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Z</span></td></tr>
+                    <tr><td>やり直し</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Y</span></td></tr>
+                    <tr><td>書式なし貼付</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">V</span></td></tr>
+                    <tr><td>検索と置換</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">H</span></td></tr>
+                    <tr><td>印刷</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">P</span></td></tr>
+                </tbody></table>
+            </div>
+            
+            <div class="category">
+                <h3 class="category-title">🎨 Format</h3>
+                <table class="shortcut-table">
+                    <tbody><tr><td>太字</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">B</span></td></tr>
+                    <tr><td>斜体</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">I</span></td></tr>
+                    <tr><td>下線</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">U</span></td></tr>
+                    <tr><td>取り消し線</td><td><span class="key">Alt</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">5</span></td></tr>
+                    <tr><td>上付き</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">.</span></td></tr>
+                    <tr><td>下付き</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">,</span></td></tr>
+                    <tr><td>書式クリア</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">\</span></td></tr>
+                </tbody></table>
+            </div>
+            
+            <div class="category">
+                <h3 class="category-title">📐 Paragraph</h3>
+                <table class="shortcut-table">
+                    <tbody><tr><td>左揃え</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">L</span></td></tr>
+                    <tr><td>中央揃え</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">E</span></td></tr>
+                    <tr><td>右揃え</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">R</span></td></tr>
+                    <tr><td>両端揃え</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">J</span></td></tr>
+                    <tr><td>番号リスト</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">7</span></td></tr>
+                    <tr><td>箇条書き</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">8</span></td></tr>
+                </tbody></table>
+            </div>
+            
+            <div class="category">
+                <h3 class="category-title">📑 Heading / Insert</h3>
+                <table class="shortcut-table">
+                    <tbody><tr><td>見出し1</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Alt</span><span class="key-plus">+</span><span class="key">1</span></td></tr>
+                    <tr><td>見出し2</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Alt</span><span class="key-plus">+</span><span class="key">2</span></td></tr>
+                    <tr><td>見出し3</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Alt</span><span class="key-plus">+</span><span class="key">3</span></td></tr>
+                    <tr><td>標準テキスト</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Alt</span><span class="key-plus">+</span><span class="key">0</span></td></tr>
+                    <tr><td>リンク挿入</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">K</span></td></tr>
+                    <tr><td>改ページ</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Enter</span></td></tr>
+                    <tr><td>コメント</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Alt</span><span class="key-plus">+</span><span class="key">M</span></td></tr>
+                </tbody></table>
+            </div>
+        </div>
+        
+        <!-- Google Calendar -->
+        <div id="calendar" class="tab-content" data-category="google">
+            <div class="app-header">
+                <div class="app-icon calendar">C</div>
+                <span class="app-name">Google Calendar</span>
+            </div>
+            <div class="search-box">
+                <input type="text" placeholder="🔍 Search..." onkeyup="filterTable(this, &#39;calendar&#39;)">
+            </div>
+            
+            <div class="category">
+                <h3 class="category-title">📅 View</h3>
+                <table class="shortcut-table">
+                    <tbody><tr><td>日表示</td><td><span class="key">D</span></td></tr>
+                    <tr><td>週表示</td><td><span class="key">W</span></td></tr>
+                    <tr><td>月表示</td><td><span class="key">M</span></td></tr>
+                    <tr><td>年表示</td><td><span class="key">Y</span></td></tr>
+                    <tr><td>スケジュール表示</td><td><span class="key">A</span></td></tr>
+                    <tr><td>今日へ移動</td><td><span class="key">T</span></td></tr>
+                    <tr><td>特定日へ移動</td><td><span class="key">G</span></td></tr>
+                </tbody></table>
+            </div>
+            
+            <div class="category">
+                <h3 class="category-title">🔧 Navigation / Actions</h3>
+                <table class="shortcut-table">
+                    <tbody><tr><td>次の期間</td><td><span class="key">J</span> / <span class="key">N</span></td></tr>
+                    <tr><td>前の期間</td><td><span class="key">K</span> / <span class="key">P</span></td></tr>
+                    <tr><td>新規予定作成</td><td><span class="key">C</span></td></tr>
+                    <tr><td>予定の詳細表示</td><td><span class="key">E</span></td></tr>
+                    <tr><td>予定を削除</td><td><span class="key">Backspace</span> / <span class="key">Delete</span></td></tr>
+                    <tr><td>更新</td><td><span class="key">R</span></td></tr>
+                    <tr><td>検索</td><td><span class="key">/</span></td></tr>
+                    <tr><td>設定</td><td><span class="key">S</span></td></tr>
+                    <tr><td>ショートカット一覧</td><td><span class="key">?</span></td></tr>
+                </tbody></table>
+            </div>
+        </div>
+
+        <!-- ========== OTHERS ========== -->
+        
+        <!-- Zoom -->
+        <div id="zoom" class="tab-content" data-category="others">
+            <div class="app-header">
+                <div class="app-icon zoom">Z</div>
+                <span class="app-name">Zoom</span>
+            </div>
+            <div class="search-box">
+                <input type="text" placeholder="🔍 Search..." onkeyup="filterTable(this, &#39;zoom&#39;)">
+            </div>
+            
+            <div class="category">
+                <h3 class="category-title">🎤 Audio / Video</h3>
+                <table class="shortcut-table">
+                    <tbody><tr><td>マイクミュート/解除</td><td><span class="key">Alt</span><span class="key-plus">+</span><span class="key">A</span></td></tr>
+                    <tr><td>プッシュトゥトーク</td><td><span class="key">Space</span>（長押し）</td></tr>
+                    <tr><td>ビデオ開始/停止</td><td><span class="key">Alt</span><span class="key-plus">+</span><span class="key">V</span></td></tr>
+                    <tr><td>挙手</td><td><span class="key">Alt</span><span class="key-plus">+</span><span class="key">Y</span></td></tr>
+                </tbody></table>
+            </div>
+            
+            <div class="category">
+                <h3 class="category-title">🖥️ Screen / Share</h3>
+                <table class="shortcut-table">
+                    <tbody><tr><td>画面共有開始/停止</td><td><span class="key">Alt</span><span class="key-plus">+</span><span class="key">S</span></td></tr>
+                    <tr><td>画面共有一時停止</td><td><span class="key">Alt</span><span class="key-plus">+</span><span class="key">T</span></td></tr>
+                    <tr><td>ホワイトボード</td><td><span class="key">Alt</span><span class="key-plus">+</span><span class="key">W</span></td></tr>
+                    <tr><td>チャットパネル</td><td><span class="key">Alt</span><span class="key-plus">+</span><span class="key">H</span></td></tr>
+                    <tr><td>参加者パネル</td><td><span class="key">Alt</span><span class="key-plus">+</span><span class="key">U</span></td></tr>
+                </tbody></table>
+            </div>
+            
+            <div class="category">
+                <h3 class="category-title">🔧 Meeting</h3>
+                <table class="shortcut-table">
+                    <tbody><tr><td>ミーティング終了</td><td><span class="key">Alt</span><span class="key-plus">+</span><span class="key">Q</span></td></tr>
+                    <tr><td>全画面切替</td><td><span class="key">Alt</span><span class="key-plus">+</span><span class="key">F</span></td></tr>
+                    <tr><td>ギャラリービュー切替</td><td><span class="key">Alt</span><span class="key-plus">+</span><span class="key">F1</span></td></tr>
+                    <tr><td>スピーカービュー切替</td><td><span class="key">Alt</span><span class="key-plus">+</span><span class="key">F2</span></td></tr>
+                    <tr><td>録画開始/停止</td><td><span class="key">Alt</span><span class="key-plus">+</span><span class="key">R</span></td></tr>
+                    <tr><td>クラウド録画開始/停止</td><td><span class="key">Alt</span><span class="key-plus">+</span><span class="key">C</span></td></tr>
+                    <tr><td>招待</td><td><span class="key">Alt</span><span class="key-plus">+</span><span class="key">I</span></td></tr>
+                </tbody></table>
+            </div>
+        </div>
+        
+        <!-- ChatGPT -->
+        <div id="chatgpt" class="tab-content" data-category="others">
+            <div class="app-header">
+                <div class="app-icon chatgpt">G</div>
+                <span class="app-name">ChatGPT</span>
+            </div>
+            <div class="search-box">
+                <input type="text" placeholder="🔍 Search..." onkeyup="filterTable(this, &#39;chatgpt&#39;)">
+            </div>
+            
+            <div class="category">
+                <h3 class="category-title">💬 Chat</h3>
+                <table class="shortcut-table">
+                    <tbody><tr><td>新しいチャット</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">O</span></td></tr>
+                    <tr><td>入力欄にフォーカス</td><td><span class="key">Shift</span><span class="key-plus">+</span><span class="key">Esc</span></td></tr>
+                    <tr><td>最後の回答をコピー</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">;</span></td></tr>
+                    <tr><td>最後のコードをコピー</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">,</span></td></tr>
+                    <tr><td>チャット削除</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">Backspace</span></td></tr>
+                </tbody></table>
+            </div>
+            
+            <div class="category">
+                <h3 class="category-title">🔧 Navigation</h3>
+                <table class="shortcut-table">
+                    <tbody><tr><td>サイドバー開閉</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">S</span></td></tr>
+                    <tr><td>チャット検索</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">/</span></td></tr>
+                    <tr><td>設定を開く</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">,</span></td></tr>
+                    <tr><td>ショートカット一覧</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">/</span></td></tr>
+                </tbody></table>
+            </div>
+            
+            <div class="category">
+                <h3 class="category-title">🎤 Voice</h3>
+                <table class="shortcut-table">
+                    <tbody><tr><td>音声入力開始/停止</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">.</span></td></tr>
+                    <tr><td>読み上げ開始/停止</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">'</span></td></tr>
+                </tbody></table>
+            </div>
+        </div>
+        
+        <!-- Claude -->
+        <div id="claude" class="tab-content" data-category="others">
+            <div class="app-header">
+                <div class="app-icon claude">C</div>
+                <span class="app-name">Claude</span>
+            </div>
+            <div class="search-box">
+                <input type="text" placeholder="🔍 Search..." onkeyup="filterTable(this, &#39;claude&#39;)">
+            </div>
+            
+            <div class="category">
+                <h3 class="category-title">💬 Chat</h3>
+                <table class="shortcut-table">
+                    <tbody><tr><td>新しいチャット</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">O</span></td></tr>
+                    <tr><td>メッセージ送信</td><td><span class="key">Enter</span></td></tr>
+                    <tr><td>改行（送信せず）</td><td><span class="key">Shift</span><span class="key-plus">+</span><span class="key">Enter</span></td></tr>
+                    <tr><td>入力欄にフォーカス</td><td><span class="key">/</span></td></tr>
+                    <tr><td>応答を停止</td><td><span class="key">Esc</span></td></tr>
+                </tbody></table>
+            </div>
+            
+            <div class="category">
+                <h3 class="category-title">🔧 Navigation</h3>
+                <table class="shortcut-table">
+                    <tbody><tr><td>サイドバー開閉</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">S</span></td></tr>
+                    <tr><td>チャット検索</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">K</span></td></tr>
+                    <tr><td>次のチャット</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">↓</span></td></tr>
+                    <tr><td>前のチャット</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">↑</span></td></tr>
+                    <tr><td>ショートカット一覧</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">/</span></td></tr>
+                </tbody></table>
+            </div>
+            
+            <div class="category">
+                <h3 class="category-title">📎 File</h3>
+                <table class="shortcut-table">
+                    <tbody><tr><td>ファイルアップロード</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">U</span></td></tr>
+                    <tr><td>スクリーンショット添付</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">P</span></td></tr>
+                </tbody></table>
+            </div>
+        </div>
+        
+        <!-- Gamma -->
+        <div id="gamma" class="tab-content" data-category="others">
+            <div class="app-header">
+                <div class="app-icon gamma">γ</div>
+                <span class="app-name">Gamma</span>
+            </div>
+            <div class="search-box">
+                <input type="text" placeholder="🔍 Search..." onkeyup="filterTable(this, &#39;gamma&#39;)">
+            </div>
+            
+            <div class="category">
+                <h3 class="category-title">📝 Edit</h3>
+                <table class="shortcut-table">
+                    <tbody><tr><td>元に戻す</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Z</span></td></tr>
+                    <tr><td>やり直し</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Shift</span><span class="key-plus">+</span><span class="key">Z</span></td></tr>
+                    <tr><td>コピー</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">C</span></td></tr>
+                    <tr><td>貼り付け</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">V</span></td></tr>
+                    <tr><td>カードを複製</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">D</span></td></tr>
+                    <tr><td>カードを削除</td><td><span class="key">Backspace</span>（選択時）</td></tr>
+                </tbody></table>
+            </div>
+            
+            <div class="category">
+                <h3 class="category-title">🎨 Format</h3>
+                <table class="shortcut-table">
+                    <tbody><tr><td>太字</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">B</span></td></tr>
+                    <tr><td>斜体</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">I</span></td></tr>
+                    <tr><td>下線</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">U</span></td></tr>
+                    <tr><td>リンク追加</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">K</span></td></tr>
+                    <tr><td>見出し1</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Alt</span><span class="key-plus">+</span><span class="key">1</span></td></tr>
+                    <tr><td>見出し2</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Alt</span><span class="key-plus">+</span><span class="key">2</span></td></tr>
+                </tbody></table>
+            </div>
+            
+            <div class="category">
+                <h3 class="category-title">🔧 Navigation / Other</h3>
+                <table class="shortcut-table">
+                    <tbody><tr><td>次のカード</td><td><span class="key">↓</span> / <span class="key">Tab</span></td></tr>
+                    <tr><td>前のカード</td><td><span class="key">↑</span> / <span class="key">Shift</span><span class="key-plus">+</span><span class="key">Tab</span></td></tr>
+                    <tr><td>新しいカード追加</td><td><span class="key">Enter</span>（カード末尾で）</td></tr>
+                    <tr><td>AIで生成</td><td><span class="key">/</span>（スラッシュコマンド）</td></tr>
+                    <tr><td>プレゼンモード</td><td><span class="key">Ctrl</span><span class="key-plus">+</span><span class="key">Enter</span></td></tr>
+                    <tr><td>プレゼン終了</td><td><span class="key">Esc</span></td></tr>
+                </tbody></table>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let currentCategory = 'microsoft';
+        let currentApp = 'excel';
+        
+        function openCategory(category) {
+            currentCategory = category;
+            
+            // カテゴリボタン更新
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // アプリナビ表示切替
+            document.querySelectorAll('.app-nav').forEach(nav => {
+                nav.classList.remove('active');
+            });
+            document.getElementById(`nav-${category}`).classList.add('active');
+            
+            // カテゴリ内の最初のアプリを表示
+            const firstAppBtn = document.querySelector(`#nav-${category} .app-btn`);
+            if (firstAppBtn) {
+                const appClass = Array.from(firstAppBtn.classList).find(c => c !== 'app-btn' && c !== 'active');
+                openApp(appClass);
+            }
+        }
+        
+        function openApp(appId) {
+            currentApp = appId;
+            
+            // 全タブコンテンツを非表示
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // 全アプリボタンを非アクティブ
+            document.querySelectorAll('.app-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // 選択したアプリを表示
+            document.getElementById(appId).classList.add('active');
+            document.querySelector(`.app-btn.${appId}`).classList.add('active');
+            
+            // 検索ボックスクリア
+            const searchInput = document.querySelector(`#${appId} .search-box input`);
+            if (searchInput) {
+                searchInput.value = '';
+                filterTable({value: ''}, appId);
+            }
+        }
+        
+        function filterTable(input, appId) {
+            const filter = input.value.toLowerCase();
+            const tables = document.querySelectorAll(`#${appId} .shortcut-table`);
+            
+            tables.forEach(table => {
+                const rows = table.querySelectorAll('tr');
+                rows.forEach(row => {
+                    const text = row.textContent.toLowerCase();
+                    if (text.includes(filter)) {
+                        row.classList.remove('hidden');
+                    } else {
+                        row.classList.add('hidden');
+                    }
+                });
+            });
+        }
+    </script>
+
+
+</body></html>
